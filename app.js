@@ -1,6 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const express = require("express");
+const ejs = require("ejs");
 const fs = require("fs");
 const writeStream = fs.createWriteStream("output.csv");
 
@@ -11,6 +12,10 @@ const app = express();
 const url = "https://battlebots.fandom.com/wiki/Discovery_Season_6";
 
 const peopleArr = ["joe", "bob", "sue", "cody"];
+
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "/public"));
 
 axios
   .get(url)
@@ -30,7 +35,7 @@ axios
   .catch((err) => console.error(err));
 
 app.get("/", (req, res) => {
-  res.render();
+  res.render("home");
 });
 
 app.listen(port, () => {
