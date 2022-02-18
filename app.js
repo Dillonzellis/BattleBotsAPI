@@ -29,6 +29,10 @@ axios
   })
   .catch((err) => console.error(err));
 
+app.get("/", (req, res) => {
+  res.render();
+});
+
 app.listen(port, () => {
   console.log(`Server Established and running on Port ${port}`);
 });
