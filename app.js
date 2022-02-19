@@ -21,15 +21,50 @@ axios
   .get(url)
   .then((res) => {
     const $ = cheerio.load(res.data);
-    $(".article-table").each((index, element) => {
+
+    // console.log($("h3 > mw-headline").text());
+
+    //   $()
+
+    //   let botArr = botTitles.split(" ");
+    //   let cleanArr = botArr.filter((a) => a !== "vs.");
+    //   console.log(`${cleanArr}`);
+
+    //   // writeStream.write(`Bot name: ${cleanArr} \n`);
+
+    // });
+
+
+    $(".mw-parser-output").each((index, element) => {
       const botTitles = $(element).find("td").text();
-      console.log(botTitles);
+      const episodes = $(element)
+        .find("h3 > .mw-headline").text()
 
-      let botArr = botTitles.split(" ");
-      let cleanArr = botArr.filter((a) => a !== "vs.");
-      console.log(`${cleanArr}`);
+      
+        // .each((index, element) => {
+        //   const episode = [];
+        //   episode.push($(element).text());
+          
+        // });
+      // console.log(botTitles);
+      console.log(episodes);
 
-      writeStream.write(`Bot name: ${cleanArr} \n`);
+      let botArr = botTitles.split(" vs. ");
+      // let cleanArr = botArr.filter((a) => a !== "vs.");
+      // console.log(`${botArr}`);
+
+      // const epiArr = [];
+      // epiArr.push();
+
+      // $("h3 > .mw-headline").each((index, element) => {
+      //   // const botTitles = $(element).find().text();
+      //   const episode = [];
+      //   episode.push($(element).text());
+      //   console.log(episode);
+
+      // console.log(episode);
+
+      // writeStream.write(`Bot name: ${botArr} \n`);
     });
   })
   .catch((err) => console.error(err));
