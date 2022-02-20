@@ -162,13 +162,28 @@ async function start() {
     console.log(botMatch10);
   };
 
-  // console.log(slicedTitles);
+  // vs arr
+  const botMatchRows = await page.evaluate(() => {
+    return Array.from(
+      document.querySelectorAll(
+        "#mw-content-text > div > table:nth-child(n+37):nth-child(-n+64) tr"
+      )
+    ).map((x) => x.textContent);
+  });
+
+  const size = 9;
+  const arrOfRows = [];
+  for (var i = 0; i < botMatchRows.length; i += size) {
+    arrOfRows.push(botMatchRows.slice(i, i + size));
+  }
+
+  console.log(arrOfRows[0]);
 
   // Server
   app.get("/", function (req, res) {
     res.render("home", {
       episodeTitlesRender: slicedTitles,
-      matchUpsRender: botMatch1,
+      matchUpsRender: arrOfRows,
     });
   });
 
@@ -177,7 +192,6 @@ async function start() {
   });
 
   // logger();
-  // console.log(slicedTitles[0]);
   await browser.close();
 }
 
