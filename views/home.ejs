@@ -8,6 +8,18 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>content</h1>
+    <h1>Episode Titles</h1>
+    <ul>
+      <% episodeTitlesRender.forEach(title => { %>
+      <li><%= title %></li>
+      <% }); %>
+    </ul>
+    <br />
+    <h2>Episode Match Ups</h2>
+    <ul>
+      <% matchUpsRender.forEach(botName => { %>
+      <li><%= botName %></li>
+      <% }) %>
+    </ul>
   </body>
 </html>

@@ -162,17 +162,23 @@ async function start() {
     console.log(botMatch10);
   };
 
+  // console.log(slicedTitles);
+
+  // Server
+  app.get("/", function (req, res) {
+    res.render("home", {
+      episodeTitlesRender: slicedTitles,
+      matchUpsRender: botMatch1,
+    });
+  });
+
+  app.listen(port, () => {
+    console.log(`Server Established and running on Port ${port}`);
+  });
+
   // logger();
+  // console.log(slicedTitles[0]);
   await browser.close();
 }
 
 start();
-
-// Server
-app.get("/", function (req, res) {
-  res.render("home", {});
-});
-
-app.listen(port, () => {
-  console.log(`Server Established and running on Port ${port}`);
-});
