@@ -2,11 +2,15 @@ const puppeteer = require("puppeteer");
 const express = require("express");
 const fs = require("fs/promises");
 
+const port = process.env.PORT || 4000;
+const app = express();
+
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+// Web Scrape
 async function start() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -163,3 +167,12 @@ async function start() {
 }
 
 start();
+
+// Server
+app.get("/", function (req, res) {
+  res.render("home", {});
+});
+
+app.listen(port, () => {
+  console.log(`Server Established and running on Port ${port}`);
+});
