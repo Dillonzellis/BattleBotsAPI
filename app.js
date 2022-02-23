@@ -32,9 +32,9 @@ async function start() {
       document.querySelectorAll(
         "table.article-table.fandom-table td" // This pulls the correct data from the tables. Took forever to realize removing the # sign was the reason it wasn't pulling the data correctly.
       )
-    ).map((x) => x.textContent)
+    ).map((x) => x.textContent.replace(/\n/g, '')) // Fixed the \n at the end
   });
-  //console.log(botMatchRows)
+  console.log(botMatchRows)
 
   // slice match up rows arr
   const size = 8; // Now 8 since the Youtube Bonus Battle row is avoided
