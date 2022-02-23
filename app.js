@@ -17,11 +17,13 @@ async function start() {
 
   // episode Titles
   const episodesTitles = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll(".mw-headline")).map(
+    return Array.from(document.querySelectorAll("h3 > .mw-headline")).map(
       (x) => x.textContent
     );
   });
-  const slicedTitles = episodesTitles.slice(2, 12);
+
+  console.log(episodesTitles);
+  // const slicedTitles = episodesTitles.slice(2, 12);
 
   //bot match ups total
   const botMatchUps = await page.evaluate(() => {
@@ -48,8 +50,8 @@ async function start() {
   for (var i = 0; i <= botMatchRows.length; i += size) {
     arrOfRows.push(botMatchRows.slice(i, i + size));
   }
-  // console.log(arrOfRows[0][0]);
-  console.log(arrOfRows);
+  console.log(arrOfRows[0][0]);
+  // console.log(arrOfRows);
 
   // Server
   app.get("/", function (req, res) {
