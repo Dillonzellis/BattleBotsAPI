@@ -56,7 +56,7 @@ async function start() {
   // Server
   app.get("/", function (req, res) {
     res.render("home", {
-      episodeTitlesRender: slicedTitles,
+      episodeTitlesRender: episodesTitles,
       matchUpsRender: arrOfRows,
     });
   });
