@@ -1,8 +1,10 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
+require('dotenv').config();
 
 const port = process.env.PORT || 4000;
 const app = express();
+const URL = (process.env.URL)
 
 app.set("view engine", "ejs");
 
@@ -13,7 +15,7 @@ app.use(express.static("public"));
 async function start() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://battlebots.fandom.com/wiki/Discovery_Season_6");
+  await page.goto(`${URL}`);
 
   // episode Titles
   const episodesTitles = await page.evaluate(() => {
